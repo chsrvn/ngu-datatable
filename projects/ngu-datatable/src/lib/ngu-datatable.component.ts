@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'lib-ngu-datatable',
-  template: `
-    <p>
-      ngu-datatable works!
-    </p>
-  `,
+  selector: "ngu-datatable",
+  templateUrl: "./ngu-datatable.component.html",
   styles: []
 })
 export class NguDatatableComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
