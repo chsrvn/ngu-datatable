@@ -1,12 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import {AfterViewInit, Component, ContentChildren, Input, OnInit, QueryList} from "@angular/core";
+import {NguDatatableColumn} from "./ngu-datatable-column/ngu-datatable-column.component";
 
 @Component({
   selector: "ngu-datatable",
   templateUrl: "./ngu-datatable.component.html",
-  styles: []
+  styleUrls: ["./ngu-datatable.component.scss"]
 })
-export class NguDatatableComponent implements OnInit {
-  constructor() {}
+export class NguDatatableComponent {
+  _data: any[] = [];
+  @Input("data") set data(dataSource) {
+    this._data = dataSource;
+  }
 
-  ngOnInit() {}
+  @ContentChildren(NguDatatableColumn, {descendants: true})
+  columns: QueryList<NguDatatableColumn>;
 }

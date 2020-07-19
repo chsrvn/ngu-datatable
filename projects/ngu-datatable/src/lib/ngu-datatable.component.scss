@@ -1,0 +1,27 @@
+.ngu-datatable-container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+
+  .ngu-datatable-header-row {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #c0bcf2;
+    .ngu-datatable-header-cell {
+      color: white;
+    }
+  }
+  .ngu-datatable-data-row {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 8px;
+    .ngu-datatable-data-cell {
+    }
+  }
+
+  .ngu-datatable-data-row:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+}
