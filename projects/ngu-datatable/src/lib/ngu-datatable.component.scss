@@ -1,0 +1,14 @@
+.ngu-datatable-container {
+  display: flex;
+
+  .ngu-datatable-header-cell {}
+
+  .ngu-datatable-data-column {
+    display: flex;
+    flex-direction: column;
+
+    .ngu-datatable-data-cell {
+
+    }
+  }
+}
