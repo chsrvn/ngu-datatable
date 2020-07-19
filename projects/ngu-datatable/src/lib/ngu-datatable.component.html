@@ -1,6 +1,6 @@
-<div class="ngu-datatable-container">
-  <ng-container *ngFor="let column of columns">
-    <div class="ngu-datatable-data-column">
+<div  class="ngu-datatable-container">
+  <div class="ngu-datatable-header-row">
+    <ng-container *ngFor="let column of columns">
       <div class="ngu-datatable-header-cell">
         <ng-container
           *ngTemplateOutlet="
@@ -9,7 +9,12 @@
           "
         ></ng-container>
       </div>
-      <ng-container *ngFor="let row of _data">
+    </ng-container>
+  </div>
+
+  <ng-container *ngFor="let row of _data">
+    <div class="ngu-datatable-data-row">
+      <ng-container *ngFor="let column of columns">
         <div class="ngu-datatable-data-cell">
           <ng-container
             *ngTemplateOutlet="

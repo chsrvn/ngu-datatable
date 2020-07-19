@@ -6,7 +6,7 @@ import {NguDatatableColumn} from "./ngu-datatable-column/ngu-datatable-column.co
   templateUrl: "./ngu-datatable.component.html",
   styleUrls: ["./ngu-datatable.component.scss"]
 })
-export class NguDatatableComponent implements OnInit, AfterViewInit {
+export class NguDatatableComponent {
   _data: any[] = [];
   @Input("data") set data(dataSource) {
     this._data = dataSource;
@@ -14,14 +14,4 @@ export class NguDatatableComponent implements OnInit, AfterViewInit {
 
   @ContentChildren(NguDatatableColumn, {descendants: true})
   columns: QueryList<NguDatatableColumn>;
-  constructor() {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit(): void {
-    console.log(this.columns);
-    // this.contentChildren.forEach(child => {
-    //   console.log(child);
-    // });
-  }
 }
