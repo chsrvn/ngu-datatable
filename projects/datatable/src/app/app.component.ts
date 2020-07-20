@@ -6,5 +6,22 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  data = [{ id: "cellid1", title: "title1" }, { id: "cellid2", title: "title2" }];
+  data = [
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid1", title: "title1" },
+    { id: "cellid2", title: "title2" }
+  ];
 }
