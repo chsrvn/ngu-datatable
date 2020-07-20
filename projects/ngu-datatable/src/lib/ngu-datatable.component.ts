@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChildren, Input, OnInit, QueryList} from "@angular/core";
+import {Component, ContentChildren, Input, QueryList} from "@angular/core";
 import {NguDatatableColumn} from "./ngu-datatable-column/ngu-datatable-column.component";
 
 @Component({

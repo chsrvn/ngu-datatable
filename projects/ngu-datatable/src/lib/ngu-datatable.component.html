@@ -2,12 +2,17 @@
   <div class="ngu-datatable-header-row">
     <ng-container *ngFor="let column of columns">
       <div class="ngu-datatable-header-cell" [fxFlex]="100/columns.length">
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngIf="column.nguDatatableHeader; else defaultHeader">
+          <ng-container
+            *ngTemplateOutlet="
             column?.nguDatatableHeader?.templateRef;
             context: { $implicit: 'row' }
           "
-        ></ng-container>
+          ></ng-container>
+        </ng-container>
+        <ng-template #defaultHeader>
+          {{ column.property }}
+        </ng-template>
       </div>
     </ng-container>
   </div>
