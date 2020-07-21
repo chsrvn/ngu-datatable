@@ -1,23 +1,35 @@
 # NguDatatable
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+This library is used to create a table for Angular
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project ngu-datatable` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngu-datatable`.
-> Note: Don't forget to add `--project ngu-datatable` or else it will be added to the default project in your `angular.json` file. 
+To install ngu-datatable, run npm install through npm package manager using the below command
 
-## Build
+```sh
+npm i ngu-datatable
+```
 
-Run `ng build ngu-datatable` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Import Module
 
-## Publishing
+Import `NguDatatableModule` in the imports section of your angular module.
 
-After building your library with `ng build ngu-datatable`, go to the dist folder `cd dist/ngu-datatable` and run `npm publish`.
+## Creating a new datatable
 
-## Running unit tests
-
-Run `ng test ngu-datatable` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+<ngu-datatable [data]="data">
+    <ngu-datatable-column property="id">
+        <ng-container *nguDatatableHeader>header1</ng-container>
+        <ng-container *nguDatatableCell="let row">
+            <input [value]="row.id">
+        </ng-container>
+   </ngu-datatable-column>
+   <ngu-datatable-column property="title">
+        <ng-container *nguDatatableHeader>header 2</ng-container>
+        <ng-container *nguDatatableCell="let row">{{ row.title }}</ng-container>
+   </ngu-datatable-column>
+</ngu-datatable>
+```
 
 ## Further help
 
