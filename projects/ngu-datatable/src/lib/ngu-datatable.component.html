@@ -1,13 +1,13 @@
-<div fxLayout="column" fxFlex="100"  class="ngu-datatable-container">
+<div fxLayout="column" fxFlex="100" class="ngu-datatable-container">
   <div class="ngu-datatable-header-row">
     <ng-container *ngFor="let column of columns">
-      <div class="ngu-datatable-header-cell" [fxFlex]="100/columns.length">
+      <div class="ngu-datatable-header-cell" [fxFlex]="100 / columns.length">
         <ng-container *ngIf="column.nguDatatableHeader; else defaultHeader">
           <ng-container
             *ngTemplateOutlet="
-            column?.nguDatatableHeader?.templateRef;
-            context: { $implicit: 'row' }
-          "
+              column?.nguDatatableHeader?.templateRef;
+              context: { $implicit: 'row' }
+            "
           ></ng-container>
         </ng-container>
         <ng-template #defaultHeader>
@@ -20,7 +20,7 @@
   <ng-container *ngFor="let row of _data">
     <div fxFlex="100" class="ngu-datatable-data-row">
       <ng-container *ngFor="let column of columns">
-        <div [fxFlex]="100/columns.length" class="ngu-datatable-data-cell">
+        <div [fxFlex]="100 / columns.length" class="ngu-datatable-data-cell">
           <ng-container
             *ngTemplateOutlet="
               column?.nguDatatableCell?.templateRef;

@@ -21,7 +21,13 @@
     }
   }
 
+  .ngu-datatable-data-row:hover, .ngu-datatable-data-row:nth-child(odd):hover {
+    transition: 0.3s;
+    background-color: #bee5f2;
+  }
+
   .ngu-datatable-data-row:nth-child(odd) {
     background-color: #f2f2f2;
   }
+
 }
