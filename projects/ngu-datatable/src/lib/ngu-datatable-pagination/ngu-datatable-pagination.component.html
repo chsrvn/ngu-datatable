@@ -1,0 +1,25 @@
+<div fxFlex="100" fxLayout="row" class="pagination-container">
+  <div fxFlex="40"></div>
+  <div fxFlex="60" class="pagination-info" fxLayout="row" fxLayoutAlign="flex-end">
+    <div class="row-selection-container" fxLayout="row">
+      <span>Records per page:</span>
+      <select class="row-selection" [formControl]="selectFormControl">
+        <option
+          [ngValue]="pageSize"
+          *ngFor="let pageSize of possiblePageSize"
+          >{{ pageSize }}</option
+        >
+      </select>
+    </div>
+    <span class="entries"
+      >{{ getFirstRowBasedOnPage() }}-{{ getLastRowBasedOnPage() }} of
+      {{ entries }}</span
+    >
+    <nav role="navigation" class="pagination-box">
+      <ul class="pagination">
+        <li> <span (click)="decreaseCurrentPage()"> < </span></li>
+        <li> <span (click)="increaseCurrentPage()"> > </span> </li>
+      </ul>
+    </nav>
+  </div>
+</div>

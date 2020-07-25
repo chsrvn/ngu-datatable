@@ -17,7 +17,7 @@
     </ng-container>
   </div>
 
-  <ng-container *ngFor="let row of _data">
+  <ng-container *ngFor="let row of visibleData">
     <div fxFlex="100" class="ngu-datatable-data-row">
       <ng-container *ngFor="let column of columns">
         <div [fxFlex]="100 / columns.length" class="ngu-datatable-data-cell">
@@ -31,4 +31,11 @@
       </ng-container>
     </div>
   </ng-container>
+  <div fxFlex="100" class="ngu-datatable-pagination">
+    <ngu-datatable-pagination
+      fxFlex="100"
+      [entries]="_data.length"
+      (paginationChange)="onPaginationChange()"
+    ></ngu-datatable-pagination>
+  </div>
 </div>
