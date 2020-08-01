@@ -12,12 +12,18 @@
     .ngu-datatable-header-cell {
       color: white;
     }
+    .select-all-header-checkbox {
+      padding-right: 0.5rem;
+    }
   }
   .ngu-datatable-data-row {
     display: flex;
     border: 1px solid #ddd;
     padding: 8px;
     .ngu-datatable-data-cell {
+    }
+    .select-row-checkbox {
+      padding-right: 0.5rem;
     }
   }
 
