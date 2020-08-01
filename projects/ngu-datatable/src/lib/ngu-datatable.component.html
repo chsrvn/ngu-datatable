@@ -1,5 +1,9 @@
 <div fxLayout="column" fxFlex="100" class="ngu-datatable-container">
   <div class="ngu-datatable-header-row">
+    <ng-container *ngIf="selectAllEnabled">
+      <div class="select-all-header-checkbox">
+        <input type="checkbox" (change)="selectAllData($event.target.checked)"/></div
+    ></ng-container>
     <ng-container *ngFor="let column of columns">
       <div class="ngu-datatable-header-cell" [fxFlex]="100 / columns.length">
         <ng-container *ngIf="column.nguDatatableHeader; else defaultHeader">
@@ -19,6 +23,11 @@
 
   <ng-container *ngFor="let row of visibleData">
     <div fxFlex="100" class="ngu-datatable-data-row">
+      <ng-container *ngIf="selectAllEnabled">
+        <div class="select-row-checkbox">
+          <input type="checkbox" (change)="selectRow($event.target.checked, row)" [checked]="isRowSelected(row)"/>
+        </div>
+      </ng-container>
       <ng-container *ngFor="let column of columns">
         <div [fxFlex]="100 / columns.length" class="ngu-datatable-data-cell">
           <ng-container
