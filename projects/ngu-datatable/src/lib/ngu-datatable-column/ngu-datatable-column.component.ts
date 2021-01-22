@@ -15,9 +15,9 @@ import { NguDatatableHeader } from "../ngu-datatable-header.directive";
 })
 export class NguDatatableColumn implements OnInit {
   @Input("property") property: string;
-  @ContentChild(NguDatatableCell, { static: false })
+  @ContentChild(NguDatatableCell)
   nguDatatableCell: NguDatatableCell;
-  @ContentChild(NguDatatableHeader, { static: false })
+  @ContentChild(NguDatatableHeader)
   nguDatatableHeader: NguDatatableHeader;
 
   ngOnInit(): void {
