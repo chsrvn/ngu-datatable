@@ -1,4 +1,18 @@
-<ngu-datatable [data]="data" [selectAllEnabled]="true">
+<ngu-datatable [data]="data" [selectAllEnabled]="true" (context)="currentContext('1', $event)">
+  <ngu-datatable-column property="id">
+<!--    <ng-container *nguDatatableHeader>header1</ng-container>-->
+    <ng-container *nguDatatableCell="let row">
+      <input [value]="row.id">
+    </ng-container>
+  </ngu-datatable-column>
+  <ngu-datatable-column property="title">
+<!--    <ng-container *nguDatatableHeader>header 2</ng-container>-->
+    <ng-container *nguDatatableCell="let row">{{ row.title }}</ng-container>
+  </ngu-datatable-column>
+</ngu-datatable>
+
+
+<ngu-datatable [data]="data" [selectAllEnabled]="false" (context)="currentContext('2', $event)">
   <ngu-datatable-column property="id">
 <!--    <ng-container *nguDatatableHeader>header1</ng-container>-->
     <ng-container *nguDatatableCell="let row">

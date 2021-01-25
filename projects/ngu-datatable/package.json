@@ -1,11 +1,18 @@
 {
   "name": "ngu-datatable",
-  "version": "0.0.5",
+  "version": "0.0.8",
+  "author": "Sravan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:chsrvn/ngu-datatable.git"
+  },
+  "homepage": "https://github.com/chsrvn/ngu-datatable/blob/master/projects/ngu-datatable/#readme",
   "dependencies": {
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0"
+    "@angular/common": "^11.1.0",
+    "@angular/core": "^11.1.0"
   }
 }

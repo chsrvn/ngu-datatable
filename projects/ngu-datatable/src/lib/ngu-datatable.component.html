@@ -2,7 +2,10 @@
   <div class="ngu-datatable-header-row">
     <ng-container *ngIf="selectAllEnabled">
       <div class="select-all-header-checkbox">
-        <input type="checkbox" (change)="selectAllData($event.target.checked)"/></div
+        <input
+          type="checkbox"
+          (change)="selectAllData($event.target.checked)"
+        /></div
     ></ng-container>
     <ng-container *ngFor="let column of columns">
       <div class="ngu-datatable-header-cell" [fxFlex]="100 / columns.length">
@@ -21,11 +24,15 @@
     </ng-container>
   </div>
 
-  <ng-container *ngFor="let row of visibleData">
+  <ng-container *ngFor="let row of datatableService.dataContext.visibleData">
     <div fxFlex="100" class="ngu-datatable-data-row">
       <ng-container *ngIf="selectAllEnabled">
         <div class="select-row-checkbox">
-          <input type="checkbox" (change)="selectRow($event.target.checked, row)" [checked]="isRowSelected(row)"/>
+          <input
+            type="checkbox"
+            (change)="selectRow($event.target.checked, row)"
+            [checked]="isRowSelected(row)"
+          />
         </div>
       </ng-container>
       <ng-container *ngFor="let column of columns">
@@ -43,7 +50,7 @@
   <div fxFlex="100" class="ngu-datatable-pagination">
     <ngu-datatable-pagination
       fxFlex="100"
-      [entries]="_data.length"
+      [entries]="datatableService.dataContext.data.length"
       (paginationChange)="onPaginationChange()"
     ></ngu-datatable-pagination>
   </div>

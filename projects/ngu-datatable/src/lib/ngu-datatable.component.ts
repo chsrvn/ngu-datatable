@@ -4,33 +4,37 @@ import {
   EventEmitter,
   Input,
   Output,
-  QueryList
+  QueryList,
 } from "@angular/core";
+import { TableContext } from "./model/data.model";
 import { NguDatatableColumn } from "./ngu-datatable-column/ngu-datatable-column.component";
 import { NguDatatablePaginationService } from "./ngu-datatable-pagination/ngu-datatable-pagination.service";
+import { NguDatatableService } from "./ngu-datatable.service";
 
 @Component({
   selector: "ngu-datatable",
   templateUrl: "./ngu-datatable.component.html",
-  styleUrls: ["./ngu-datatable.component.scss"]
+  styleUrls: ["./ngu-datatable.component.scss"],
 })
 export class NguDatatableComponent {
-  _data: any[] = [];
-  visibleData: any[] = [];
-  selectedData: any[] = [];
   @Input("data") set data(dataSource) {
-    this._data = dataSource;
+    this.datatableService.dataContext.data = dataSource;
     this.setVisibleData();
   }
 
   @Output() selectedRows = new EventEmitter<any>();
+  
+  @Output() context = new EventEmitter<TableContext>();
 
   @Input("selectAllEnabled") selectAllEnabled = false;
 
   @ContentChildren(NguDatatableColumn, { descendants: true })
   columns: QueryList<NguDatatableColumn>;
 
-  constructor(private paginationService: NguDatatablePaginationService) {}
+  constructor(
+    private paginationService: NguDatatablePaginationService,
+    public datatableService: NguDatatableService
+  ) {}
   onPaginationChange() {
     this.setVisibleData();
   }
@@ -39,28 +43,36 @@ export class NguDatatableComponent {
     const pageSize = this.paginationService.pagination.pageSize;
     const currentPage = this.paginationService.pagination.currentPage;
     const startValue = (currentPage - 1) * pageSize;
-    this.visibleData = this._data.slice(startValue, startValue + pageSize);
+    this.datatableService.dataContext.visibleData = this.datatableService.dataContext.data.slice(
+      startValue,
+      startValue + pageSize
+    );
   }
 
   selectAllData(checked: boolean) {
     if (checked) {
-      this.selectedData = this.visibleData.slice();
+      this.datatableService.dataContext.selectedData = this.datatableService.dataContext.visibleData.slice();
     } else {
-      this.selectedData = [];
+      this.datatableService.dataContext.selectedData = [];
     }
-    this.selectedRows.emit(this.selectedData);
+    this.context.emit(this.datatableService.dataContext);
+    this.selectedRows.emit(this.datatableService.dataContext.selectedData);
   }
 
   selectRow(checked: boolean, row: any) {
     if (checked) {
-      this.selectedData.push(row);
+      this.datatableService.dataContext.selectedData.push(row);
     } else {
-      this.selectedData.splice(this.selectedData.indexOf(row), 1);
+      this.datatableService.dataContext.selectedData.splice(
+        this.datatableService.dataContext.selectedData.indexOf(row),
+        1
+      );
     }
-    this.selectedRows.emit(this.selectedData);
+    this.context.emit(this.datatableService.dataContext);
+    this.selectedRows.emit(this.datatableService.dataContext.selectedData);
   }
 
   isRowSelected(row: any) {
-    return this.selectedData.includes(row);
+    return this.datatableService.dataContext.selectedData.includes(row);
   }
 }
