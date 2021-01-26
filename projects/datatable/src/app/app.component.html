@@ -1,6 +1,6 @@
-<ngu-datatable [data]="data" [selectAllEnabled]="true" (context)="currentContext('1', $event)">
+<ngu-datatable #table [data]="data" [selectAllEnabled]="true" (context)="currentContext('1', $event)">
   <ngu-datatable-column property="id">
-<!--    <ng-container *nguDatatableHeader>header1</ng-container>-->
+   <ng-container *nguDatatableHeader>header1</ng-container>
     <ng-container *nguDatatableCell="let row">
       <input [value]="row.id">
     </ng-container>

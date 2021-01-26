@@ -24,7 +24,7 @@
     </ng-container>
   </div>
 
-  <ng-container *ngFor="let row of datatableService.dataContext.visibleData">
+  <ng-container *ngFor="let row of context.visibleData">
     <div fxFlex="100" class="ngu-datatable-data-row">
       <ng-container *ngIf="selectAllEnabled">
         <div class="select-row-checkbox">
@@ -50,7 +50,7 @@
   <div fxFlex="100" class="ngu-datatable-pagination">
     <ngu-datatable-pagination
       fxFlex="100"
-      [entries]="datatableService.dataContext.data.length"
+      [entries]="context.data.length"
       (paginationChange)="onPaginationChange()"
     ></ngu-datatable-pagination>
   </div>
