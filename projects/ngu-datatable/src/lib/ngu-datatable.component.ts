@@ -1,10 +1,6 @@
-import {
-  Component,
-  ContentChildren,
-  Input,
-  QueryList,
-} from "@angular/core";
+import { Component, ContentChildren, Input, QueryList } from "@angular/core";
 import { TableContext } from "./model/data.model";
+import { SortDirection } from "./model/sort.model";
 import { NguDatatableColumn } from "./ngu-datatable-column/ngu-datatable-column.component";
 import { NguDatatablePaginationService } from "./ngu-datatable-pagination/ngu-datatable-pagination.service";
 
@@ -19,6 +15,10 @@ export class NguDatatableComponent {
     this.setVisibleData();
   }
 
+  get data() {
+    return this.context.data;
+  }
+
   public context: TableContext = {
     data: [],
     visibleData: [],
@@ -26,14 +26,14 @@ export class NguDatatableComponent {
     sort: null,
   };
 
+  SortDirection = SortDirection;
+
   @Input("selectAllEnabled") selectAllEnabled = false;
 
   @ContentChildren(NguDatatableColumn, { descendants: true })
   columns: QueryList<NguDatatableColumn>;
 
-  constructor(
-    private paginationService: NguDatatablePaginationService
-  ) {}
+  constructor(private paginationService: NguDatatablePaginationService) {}
   onPaginationChange() {
     this.setVisibleData();
   }
@@ -69,5 +69,51 @@ export class NguDatatableComponent {
 
   isRowSelected(row: any) {
     return this.context.selectedData.includes(row);
+  }
+
+  onSortClick(column: NguDatatableColumn) {
+    if (!!column.sort || column.sort == "") {
+      if (!!this.context.sort) {
+        this.context.sort = {
+          column: column.property,
+          direction:
+            this.context.sort.column === column.property &&
+            this.context.sort.direction === SortDirection.DESC
+              ? SortDirection.ASC
+              : SortDirection.DESC,
+        };
+      } else {
+        this.context.sort = {
+          column: column.property,
+          direction: SortDirection.DESC,
+        };
+      }
+      this.context.data = this.data.sort((a, b) => {
+        if (this.context.sort.direction === SortDirection.DESC) {
+          return a[column.property] < b[column.property]
+            ? 1
+            : a[column.property] > b[column.property]
+            ? -1
+            : 0;
+        } else {
+          return a[column.property] > b[column.property]
+            ? 1
+            : a[column.property] < b[column.property]
+            ? -1
+            : 0;
+        }
+      });
+      this.setVisibleData();
+    }
+  }
+
+  getSortArrow(column: NguDatatableColumn) {
+    if (!this.context.sort) {
+      return "";
+    } else if (this.context.sort.column === column.property) {
+      return this.context.sort.direction === SortDirection.DESC
+        ? "headerSortDown"
+        : "headerSortUp";
+    }
   }
 }

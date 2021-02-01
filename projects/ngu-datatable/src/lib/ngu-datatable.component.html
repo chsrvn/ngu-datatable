@@ -8,7 +8,12 @@
         /></div
     ></ng-container>
     <ng-container *ngFor="let column of columns">
-      <div class="ngu-datatable-header-cell" [fxFlex]="100 / columns.length">
+      <div
+        fxLayout="row"
+        class="ngu-datatable-header-cell"
+        (click)="onSortClick(column)"
+        [fxFlex]="100 / columns.length"
+      >
         <ng-container *ngIf="column.nguDatatableHeader; else defaultHeader">
           <ng-container
             *ngTemplateOutlet="
@@ -20,6 +25,11 @@
         <ng-template #defaultHeader>
           {{ column.property }}
         </ng-template>
+        <ng-container *ngIf="column.sort || column.sort === ''"
+          ><div
+            [ngClass]="getSortArrow(column)"
+          ></div
+        ></ng-container>
       </div>
     </ng-container>
   </div>

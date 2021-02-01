@@ -15,6 +15,7 @@ import { NguDatatableHeader } from "../ngu-datatable-header.directive";
 })
 export class NguDatatableColumn implements OnInit {
   @Input("property") property: string;
+  @Input("sort") sort: string;
   @ContentChild(NguDatatableCell)
   nguDatatableCell: NguDatatableCell;
   @ContentChild(NguDatatableHeader)
