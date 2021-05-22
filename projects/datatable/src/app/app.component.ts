@@ -27,4 +27,7 @@ export class AppComponent {
     { id: "cellid1", title: "title1" },
     { id: "cellid2", title: "title2" },
   ];
+  onRowClick(event) {
+    console.log(event);
+  }
 }

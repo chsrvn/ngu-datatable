@@ -1,4 +1,4 @@
-import { Component, ContentChildren, Input, QueryList } from "@angular/core";
+import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from "@angular/core";
 import { TableContext } from "./model/data.model";
 import { SortDirection } from "./model/sort.model";
 import { NguDatatableColumn } from "./ngu-datatable-column/ngu-datatable-column.component";
@@ -32,6 +32,8 @@ export class NguDatatableComponent {
 
   @ContentChildren(NguDatatableColumn, { descendants: true })
   columns: QueryList<NguDatatableColumn>;
+
+  @Output() public rowClick = new EventEmitter();
 
   constructor(private paginationService: NguDatatablePaginationService) {}
   onPaginationChange() {

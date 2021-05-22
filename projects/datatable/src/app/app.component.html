@@ -1,4 +1,4 @@
-<ngu-datatable #table [data]="data" [selectAllEnabled]="true">
+<ngu-datatable (rowClick)="onRowClick($event)" #table [data]="data" [selectAllEnabled]="true">
   <ngu-datatable-column property="id">
    <ng-container *nguDatatableHeader>header1</ng-container>
     <ng-container *nguDatatableCell="let row">

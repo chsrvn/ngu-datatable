@@ -35,7 +35,7 @@
   </div>
 
   <ng-container *ngFor="let row of context.visibleData">
-    <div fxFlex="100" class="ngu-datatable-data-row">
+    <div (click)="rowClick.emit(row)" fxFlex="100" class="ngu-datatable-data-row">
       <ng-container *ngIf="selectAllEnabled">
         <div class="select-row-checkbox">
           <input
